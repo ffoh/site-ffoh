@@ -19,7 +19,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo
 	#gluon-mesh-vpn-tunneldigger \
 
-DEFAULT_GLUON_RELEASE := 0.9.9~exp$(shell date '+%Y%m%d')
+DEFAULT_GLUON_RELEASE := 0.9.10~exp$(shell date '+%Y%m%d')
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
