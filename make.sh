@@ -12,6 +12,11 @@ GLUON_TARGETS=$(make | grep -- - |grep -iv make|cut -f3 -d' ')
 #GLUON_TARGETS=$(ls targets | egrep -v "^generic" | grep -v "^targets" | grep -v mikrotik)
 #GLUON_TARGETS="mpc85xx-generic ramips-mt7621 sunxi x86-generic x86-geode x86-64 ipq806x ramips-mt7620 ramips-mt7628 ramips-rt305x"
 echo $GLUON_TARGETS
+
+export GLUON_DATE=$(date '+%Y%m%d')
+
+echo GLUON_DATE=$GLUON_DATE
+
 #exit 0
 
 for GLUON_TARGET in $GLUON_TARGETS
@@ -30,7 +35,7 @@ do
 	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 8 BROKEN=1 clean
 	# Gluon-Branch must be adjusted to bfo when builing for Bfo, otherwise the autoupdate will fail!
 #	make GLUON_TARGET=$GLUON_TARGET V=s -j 6 BROKEN=1 GLUON_BRANCH=bfo
-	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 7 BROKEN=1 GLUON_BRANCH=experimental
+	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 7 BROKEN=1 GLUON_DATE=$GLUON_DATE GLUON_BRANCH=experimental
 	echo "***"
 	echo "                      '$GLUON_TARGET' preparation ended"
 	echo "***"
