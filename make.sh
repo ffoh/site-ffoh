@@ -1,4 +1,16 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
+
+if [ ! -d site -o ! -d targets ]; then
+	echo "E: Execute this script from the root of the Gluon source tree."
+	exit
+fi
+
+if [ ! -d openwrt/package ]; then
+	echo "E: Please run 'make update' first to update the openwrt foundation of it all."
+	exit
+fi
 
 #GLUON_TARGETS="ar71xx-generic ar71xx-nand ar71xx-tiny brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic x86-generic x86-kvm_guest x86-64 x86-xen_domu"
 #GLUON_TARGETS="ar71xx-nand brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic x86-generic x86-kvm_guest x86-64 x86-xen_domu"
@@ -43,4 +55,5 @@ do
 	#nice make manifest GLUON_BRANCH=bfo
 	nice -n 20 make manifest GLUON_BRANCH=experimental
 done
+date -R
 echo "[ok]"
