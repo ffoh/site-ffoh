@@ -18,13 +18,14 @@ GLUON_SITE_PACKAGES := \
 	gluon-status-page-mesh-batman-adv \
 	gluon-config-mode-geo-location-osm \
 	gluon-web-private-wifi \
+	gluon-config-mode-contact-info \
 	gluon-web-logging \
 	iwinfo
 	#gluon-mesh-vpn-tunneldigger \
 
 GLUON_DATE ?= $(shell date '+%Y%m%d')
 
-DEFAULT_GLUON_RELEASE := 0.9.17~exp$(GLUON_DATE)
+DEFAULT_GLUON_RELEASE := 0.9.21~exp$(GLUON_DATE)
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)

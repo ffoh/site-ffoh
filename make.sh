@@ -2,6 +2,22 @@
 
 set -e
 
+toinstall=""
+for i in unzip gawk
+do
+	if [  -x /usr/bin/"$i" ]; then
+		continue
+	elif [  -d /usr/share/doc/"$i" ]; then
+		continue
+	fi
+	toinstall="$toinstall $i"
+done
+if [ -n "$toinstall" ]; then
+	echo "E: install missin tools with"
+	echo "   sudo apt-get install $toinstall"
+	echo "   to complete build of gluon."
+fi
+
 if [ ! -d site -o ! -d targets ]; then
 	echo "E: Execute this script from the root of the Gluon source tree."
 	exit
@@ -20,7 +36,7 @@ fi
 #GLUON_TARGETS="ar71xx-tiny ar71xx-generic mpc85xx-generic x86-generic"
 #GLUON_TARGETS="mpc85xx-generic x86-generic"
 #GLUON_TARGETS="ar71xx-generic"
-GLUON_TARGETS=$(make | grep -- - |grep -iv make|cut -f3 -d' ')
+GLUON_TARGETS=$(BROKEN=1 make | grep -- - |grep -iv make|cut -f3 -d' ')
 #GLUON_TARGETS=$(ls targets | egrep -v "^generic" | grep -v "^targets" | grep -v mikrotik)
 #GLUON_TARGETS="mpc85xx-generic ramips-mt7621 sunxi x86-generic x86-geode x86-64 ipq806x ramips-mt7620 ramips-mt7628 ramips-rt305x"
 echo $GLUON_TARGETS
