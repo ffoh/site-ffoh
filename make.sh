@@ -60,7 +60,7 @@ do
 	echo "***"
 	echo
 	echo
-	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 8 BROKEN=1 clean
+	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 8 BROKEN=1 clean || echo clean failed - ignored
 	# Gluon-Branch must be adjusted to bfo when builing for Bfo, otherwise the autoupdate will fail!
 #	make GLUON_TARGET=$GLUON_TARGET V=s -j 6 BROKEN=1 GLUON_BRANCH=bfo
 	nice make GLUON_TARGET=$GLUON_TARGET V=s -j 7 BROKEN=1 GLUON_DATE=$GLUON_DATE GLUON_BRANCH=experimental
